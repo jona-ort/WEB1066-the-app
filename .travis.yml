@@ -1,7 +1,8 @@
 language: java
 
-before_install:
-  - ./gradlew clean jar
+#before_install:
+#  - ./gradlew clean jar
 
 script:
+  - ./gradlew clean jar
   - echo `testing comming soon`
