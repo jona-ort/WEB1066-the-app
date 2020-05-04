@@ -3,8 +3,8 @@ language: java
 jdk:
   - oraclejdk9
 
-#before_install:
-#  - ./gradlew clean jar
+before_install:
+  - ./gradlew clean jar
 
 #script:
 #  - echo `testing comming soon`
