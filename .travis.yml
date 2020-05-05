@@ -6,4 +6,4 @@ install:
     - ./gradlew clean jar
 
 script:
-  - echo 'Tests comming soon'
+  - ./gradlew test
