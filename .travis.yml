@@ -1,31 +1,13 @@
-language: java
-jdk:
-  - oraclejdk9
-  - openjdk10
-
+sudo: required
+services: "-docker"
 env:
-  - COVERAGE=0
-  - COVERAGE=0.03
-  - COVERAGE=0.04
-
-install:
-    - ./gradlew clean jar
-
+  global:
+  - secure: HCgSqOs2SkhM3rb0NROIqKPjPaZt/kn3WWVfwgzc+kUNSOl8xihJGWc0Ezf4Je/LuhkHHWUuFDg7cEKbaLLaEUw1RcLDe3YtIK+My+2i+fhqDGSiqpL0BWoXXwCUZIrxhByUFN9sTDm9+b1g8e+t+QooXM/8jfd8faPF1Ilpi1Rwj6TQWUBLZxCYi7v+ReuaKjp4rYJ/t92rxk0Vi0TY6JzGqba0Shjf+K96KllwwNbfpK1PEnUO5v+RoSjLLeAaon8/fKwPgzOfcuoWmZbO/bucS9pOgsWR314YOl0zvK3zWiIacV0ovqD977UMByAF6rAsY//H3LGoBiLDMYfyJyVIKE+92JJ6djKXiJr4jfTuLwpcWIpROTBopt+pVF53Xh3NBRo/lEw2GrsxJBz+KjL7nPireGyrCZ5bOsYeCQzr8DIb8vUUaYkEbRXQS8vqkpAN31aC3hvNyqBZXKMFdEZVX61UNAsbDLNf+Fg/UAwtLCp3/EcdedGGyO3vOQ3VWFneXDvF+P0Q2JCgo0f4rXB0RyMRKmQOamNN3xiitC6wYWa9KvhsUJlMPLlXxOnFRbNNq2jdscy1eh0ALbVuSsZzXzoTs8aVHSTX54UooDe2susV0B/fAVF1SePFvULrNRpicJ/+2wJGM/6z5vfvqTVRGaXP/ZfaUxenbw0mqMw=
+  - secure: ZAEyvhtxJ2hNGz6SfBBNfybVteZEpBTMNCbUICDy2F5fqNwEtGmlUeaHzO/oKKTN/6vHB1ZznxEQL3IPfETGg4dYFcbQMxN5r7uwA6EmfJjdAmFFeTXwXBMy2OLBZWnPHWxNZMjDNxfKPHvYIWjOh4Bj3YMCmiJGrvwz7tDNE5ZxDn4wZVgdmkRmEkv43bqbPxmWocqRoM0fM8B6COv9CFpPwIYSnF51aSeBLRRJ++djiWBJMcFKrJN7v9WXDKtQBDPK8ZVJaZ4Bxn7yYNy3lQVco/ilVHQiokwwwesE4CC4xukzXVWkrfoLbEbGMmgnBw8L6juJt6BCUKoTWMfB26mHjT6IlNgBXbqgsBBpEKm43RzU32haEN/uoK9Od23W81qb+E0cTdW9w9misK3jQA+0qdfV9UzXrB6lpnkXjmL4UiGwF9mZNomZUjcWHf2HRsprWg8oBF8mHRjFMjs1ksmbTPRFLU1WaQpSbKRSwjmZpb+rtC7tw+/iX4B2Bz0cp60oluc0fu5dpdSoB2eCw33HZtdYjlKhkqJ+YzlWXVlc+AiZYTAqjUl7i4ZvJli1nO/817vBANY3+Ytfha/kRb1o08avxTxGKKAl2JSl4AHLTQFPVsgHlJYXnh5hl77lXgJy28fk/hUQVfRiIosolq3xqO/Vxftm3z9tRBYd1IY=
+before_install:
+- docker login -u=$DOCKER_USER -p=$DOCKER_PASSWORD
 script:
-  - ./gradlew -p ./monolithic/ui check
-  - ./gradlew -p ./monolithic/service/cart check
-  - ./gradlew -p ./monolithic/service/user check
-  - ./gradlew -p ./monolithic/repository/order check
-  - ./gradlew -p ./monolithic/repository/cart check
-  - ./gradlew -p ./monolithic/repository/product check
-  - ./gradlew -p ./monolithic/repository/user check
-  - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
-
-#before_deploy:
-#  - COVERAGE=0.25 ./gradlew test jacocoTestCoverageVerification
-
-deploy:
-  provider: script
-  script: echo 'WIP'
-  on:
-    all_branches: true
+- docker build -t the-app .
+after_success:
+- docker tag the_app the-app:$(git rev-parse HEAD)
+- docker push $DOCKER_LOGIN/the-app:$(git rev-parse HEAD)
