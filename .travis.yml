@@ -5,8 +5,8 @@ jdk:
 
 env:
   - COVERAGE=0
-  #- COVERAGE=0.03
-  #- COVERAGE=0.04
+  - COVERAGE=0.03
+  - COVERAGE=0.04
 
 install:
     - ./gradlew clean jar
