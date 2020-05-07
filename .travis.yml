@@ -1,15 +1,36 @@
+language: java
+jdk:
+  - oraclejdk9
+
 sudo: required
-services: "-docker"
+services:
+  -docker
+
 env:
   global:
-  - secure: HCgSqOs2SkhM3rb0NROIqKPjPaZt/kn3WWVfwgzc+kUNSOl8xihJGWc0Ezf4Je/LuhkHHWUuFDg7cEKbaLLaEUw1RcLDe3YtIK+My+2i+fhqDGSiqpL0BWoXXwCUZIrxhByUFN9sTDm9+b1g8e+t+QooXM/8jfd8faPF1Ilpi1Rwj6TQWUBLZxCYi7v+ReuaKjp4rYJ/t92rxk0Vi0TY6JzGqba0Shjf+K96KllwwNbfpK1PEnUO5v+RoSjLLeAaon8/fKwPgzOfcuoWmZbO/bucS9pOgsWR314YOl0zvK3zWiIacV0ovqD977UMByAF6rAsY//H3LGoBiLDMYfyJyVIKE+92JJ6djKXiJr4jfTuLwpcWIpROTBopt+pVF53Xh3NBRo/lEw2GrsxJBz+KjL7nPireGyrCZ5bOsYeCQzr8DIb8vUUaYkEbRXQS8vqkpAN31aC3hvNyqBZXKMFdEZVX61UNAsbDLNf+Fg/UAwtLCp3/EcdedGGyO3vOQ3VWFneXDvF+P0Q2JCgo0f4rXB0RyMRKmQOamNN3xiitC6wYWa9KvhsUJlMPLlXxOnFRbNNq2jdscy1eh0ALbVuSsZzXzoTs8aVHSTX54UooDe2susV0B/fAVF1SePFvULrNRpicJ/+2wJGM/6z5vfvqTVRGaXP/ZfaUxenbw0mqMw=
-  - secure: ZAEyvhtxJ2hNGz6SfBBNfybVteZEpBTMNCbUICDy2F5fqNwEtGmlUeaHzO/oKKTN/6vHB1ZznxEQL3IPfETGg4dYFcbQMxN5r7uwA6EmfJjdAmFFeTXwXBMy2OLBZWnPHWxNZMjDNxfKPHvYIWjOh4Bj3YMCmiJGrvwz7tDNE5ZxDn4wZVgdmkRmEkv43bqbPxmWocqRoM0fM8B6COv9CFpPwIYSnF51aSeBLRRJ++djiWBJMcFKrJN7v9WXDKtQBDPK8ZVJaZ4Bxn7yYNy3lQVco/ilVHQiokwwwesE4CC4xukzXVWkrfoLbEbGMmgnBw8L6juJt6BCUKoTWMfB26mHjT6IlNgBXbqgsBBpEKm43RzU32haEN/uoK9Od23W81qb+E0cTdW9w9misK3jQA+0qdfV9UzXrB6lpnkXjmL4UiGwF9mZNomZUjcWHf2HRsprWg8oBF8mHRjFMjs1ksmbTPRFLU1WaQpSbKRSwjmZpb+rtC7tw+/iX4B2Bz0cp60oluc0fu5dpdSoB2eCw33HZtdYjlKhkqJ+YzlWXVlc+AiZYTAqjUl7i4ZvJli1nO/817vBANY3+Ytfha/kRb1o08avxTxGKKAl2JSl4AHLTQFPVsgHlJYXnh5hl77lXgJy28fk/hUQVfRiIosolq3xqO/Vxftm3z9tRBYd1IY=
-#before_install:
-#- docker login -u=$DOCKER_USER -p=$DOCKER_PASSWORD
-script:
-  - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_USER}\" --password-stdin"  && docker build -t the-app . #&& docker push the-app # docker push jonaort/gcp-training-ci-1:tagname    && docker tag the_app the-app:$(git rev-parse HEAD) && docker push $DOCKER_USER/the-app:$(git rev-parse HEAD)
+  - secure: jePdAqYTZTxg+ZbnVdkpdOQkkjqz+aATHUhbKObU/XwUvj+a7No3jXdSxVs/8evYxHzD+M22DNSnNuJVcTnWfPAGlC+EEp/VzUA7idP1Zq4653xhqVwpkn8XZhD+7cL6nrD8eL+VQMdm6mTMTQhqZumtyE1lClX7wOT75dVVrGjgKEnZr/q1YwFFj6A54D6OBr2ZS+m8N09XYAWxRZs3cm6Nu6NxBOYtQo4hInnWRbB3689blMjwGWgPp1XMhqGJsFvtEF4LCY4uC/0G+tYUCWvmSh3riJAKYSGUTYFEFFwEOgn17fGvNR259DKr940SHg48eGAk0t7FDUYUAF35JQytN3co3Yvk+5QYrHEAeiERT5oNI4L+SdHSQanHKbfBdGAjjh5BoO5Jc3JZINNXvajc6Q34Ko39LyyhRJ+6p3Lw1jG0mJT5Qfk0c33xVvUFKe41SjLkCCAwzTNbE81AolKL5vyFt4x0JBQShxuLxWCXGjwELCAw/9FdMWjMoe0Cqtaqmxydw7D88Lvbgk5AhBaFoRQlUI2TFHmPlPze4TP479AX3L5eDm9OQIRlMTHGAGXQgKQ6/IlIQDLFCzcpmvmZMQWl0M0Zl+FwY33I5GAG/ALxx8JGA2rUuv1+IkUii77FGfLBcfb5oc1ZW85qw8/pjf6X0iYhAYzQo4bsmus=
+  - secure: MRmRXNgmi39bH77kThhRsYKEayQNsjrwJdMAX3NyZFZZvr/gXy5aU69NC/yVBGHCvQ6KdAWdlhTmhN1hfkjwARPmm1XQycdqOnWbJ4pLVo19isBPkUqNbnagdKQITCSLxIz0f+RX9iKudYiJ8B5JPgIkVBFz9qwyI+xkUeKO7Pszzbe2bSDRmgEaMnrweGXV5Kyo13iFWKKbbVGHpVDlfADVv+R2phLQOEmP23FuWioEqn2A1InqDRwdDPj+gYFpDTZdinq/ciUVijEO+bdVkNe++wYQ5+IB0IeAKcZVBs0buIPVN6ZHwCJ8nSvX2gYZ1voy9l6CNqOFJV0oiXgVy2Lhde9msiakYVsk7vOOjzV/cHXiBVz/hnZ8z6eJlQtuNa/oYrhn49xNMlnnxs2AvaGJviDBV93rkK2YwfdvnchQcHQ5YTOfgCCsNRdn9PzvPA1VkSTktcSaZJPe9jR+pwYoHej4gUBdFs60e2+37NCVmkhQ9rsDkYyoEJ3E5DR915qTE8LfIR/NkJ2q8ItqhPlhX5meAce/wegd3l5fRzmejcOGioWw8TPkgP6iDEkmqeIEo3pPM8q6lA46CrhHXW/Xk2msZctpi3anF6QCLUsHhiI/um2f5MbUL+rW8TFRS1zwme/6d/aEfHl/T8iTwYbWj8KmfNAytgJY8WsQBvY=
+  - COVERAGE=0.03 EXEC_TEST=./monolithic/ui
+  - COVERAGE=0.05 EXEC_TEST=./monolithic/service/cart
+  - COVERAGE=0 EXEC_TEST=./monolithic/service/user
+  - COVERAGE=0.06 EXEC_TEST=./monolithic/repository/order
+  - COVERAGE=0 EXEC_TEST=./monolithic/repository/cart
+  - COVERAGE=0.07 EXEC_TEST=./monolithic/repository/product
+  - COVERAGE=0.08 EXEC_TEST=./monolithic/repository/user
 
-#- docker build -t the-app .
-#after_success:
-#- docker tag the_app the-app:$(git rev-parse HEAD)
-#- docker push $DOCKER_USER/the-app:$(git rev-parse HEAD)
+install:
+  - ./gradlew clean jar
+
+script:
+  - ./gradlew -p $EXEC_TEST check
+
+deploy:
+  - provider: script
+    script: ./script/deploy.sh
+    on:
+      branch: master
+  - provider: script
+    script: ./script/deploy.sh
+    on:
+      all_branches: true
+      condition: $EXEC_TEST = /monolithic/ui
