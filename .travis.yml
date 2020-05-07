@@ -7,7 +7,7 @@ env:
 #before_install:
 #- docker login -u=$DOCKER_USER -p=$DOCKER_PASSWORD
 script:
-  - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_USER}\" --password-stdin"  && docker build -t the-app . && docker push $DOCKER_USER/the-app #&& docker tag the_app the-app:$(git rev-parse HEAD) && docker push $DOCKER_USER/the-app:$(git rev-parse HEAD)
+  - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_USER}\" --password-stdin"  && docker build -t the-app . && docker push the-app #&& docker tag the_app the-app:$(git rev-parse HEAD) && docker push $DOCKER_USER/the-app:$(git rev-parse HEAD)
 
 #- docker build -t the-app .
 #after_success:
