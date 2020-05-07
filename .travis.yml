@@ -23,6 +23,7 @@ install:
 
 script:
   - ./gradlew -p $EXEC_TEST check
+  - chmod +x ./script/deploy.sh
 
 deploy:
   - provider: script
